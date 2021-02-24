@@ -12,15 +12,21 @@ By the end of this getting started guide you'll be familiar with how easy it is 
 Prerequisites
 *************
 
-Ensure that you have `git <https://git-scm.com/>`__ installed.
+#. Ensure that you have `git <https://git-scm.com/>`__ installed.
 
-First install the python Flytekit SDK and clone the ``flytekit-python-template`` repo ::
+#. Let us make a virutal environment **(recommended)** - and then install flytekit using
+    ``--pre`` is used because we are currently using the beta version of flytekit 0.16.0, this introduces a completely new SDK for authoring workflows
+    ::
 
-  pip install flytekit==0.16.0b6
-  git clone git@github.com:flyteorg/flytekit-python-template.git flyteexamples
-  cd flyteexamples
-  rm -rf .git
-  git init
+        pip install --pre flytekit
+
+
+#. Now we will use the ``flytekit-python-template`` repo to create our own git repository called ``flyteexamples`` ::
+
+      git clone git@github.com:flyteorg/flytekit-python-template.git flyteexamples
+      cd flyteexamples
+      rm -rf .git
+      git init
 
 
 Flyte Tasks and Workflows
@@ -31,8 +37,8 @@ Let's take a look at the example workflow found in `myapp/workflows/example.py <
 .. rli:: https://raw.githubusercontent.com/flyteorg/flytekit-python-template/main/myapp/workflows/example.py
    :language: python
 
-The most basic Flyte primitive is a :std:doc:`task <flytekit:tasks>`.
-Flyte tasks are units of work that can be composed in a :std:doc:`workflow <flytekit:workflow>`.
+The most basic Flyte primitive is a :std:doc:`task <generated/flytekit.task>`
+Flyte tasks are units of work that can be composed in a :std:doc:`workflow <generated/flytekit.workflow>`
 
 You can call this task
 
@@ -50,4 +56,4 @@ Similarly, you can call this workflow
 
 and iterate locally before moving on to register it with Flyte.
 
-.. tip:: Every invocation of a Flyte workflow requires specifying keyword args.
+.. tip:: Every invocation of a Flyte workflow requires specifying keyword arguments as in the example - ``hello_world(name="name")``. Calling the workflow without the keyword ``name`` will raise an ``AssertionError``.
